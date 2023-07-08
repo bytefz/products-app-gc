@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:products_app/config/config.dart' show Environment;
+import 'package:products_app/config/config.dart'
+    show Environment, goRouter, AppTheme;
 
 void main() async {
   await Environment.initEnvironment();
@@ -13,12 +14,10 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      routerConfig: goRouter,
+      theme: AppTheme().getTheme(),
     );
   }
 }
