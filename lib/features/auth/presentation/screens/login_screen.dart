@@ -265,12 +265,10 @@ class _IconLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final colors = Theme.of(context).colorScheme;
 
-    return Icon(
-      Icons.screen_lock_portrait_outlined,
-      size: size.height * 0.3,
-      color: colors.primary,
+    return Image.asset(
+      LocalImagesDataSource.loginImagePath,
+      height: size.height * .28,
     );
   }
 }
