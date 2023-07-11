@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:go_router/go_router.dart';
 
-import 'package:products_app/features/auth/presentation/presentation.dart';
+import 'package:products_app/config/config.dart';
 import 'package:products_app/features/shared/shared.dart';
+import 'package:products_app/features/auth/presentation/presentation.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -96,7 +98,7 @@ class _LoginButtons extends StatelessWidget {
     return Column(
       children: [
         ButtonLargeWidget(
-          onPressed: () {},
+          onPressed: () => context.push(Routes.product),
           child: const AutoSizeText(
             'Login',
             maxFontSize: 18,
