@@ -10,6 +10,8 @@ class TextInputPrimary extends StatelessWidget {
     this.onChanged,
     this.focusNode,
     this.inputFormatters,
+    this.suffixIcon,
+    this.obscureText,
   });
 
   final String? hintText;
@@ -17,6 +19,8 @@ class TextInputPrimary extends StatelessWidget {
   final Widget? icon;
   final Function(String value)? onChanged;
   final FocusNode? focusNode;
+  final Widget? suffixIcon;
+  final bool? obscureText;
   final List<TextInputFormatter>? inputFormatters;
 
   @override
@@ -27,6 +31,7 @@ class TextInputPrimary extends StatelessWidget {
       focusNode: focusNode,
       inputFormatters: inputFormatters,
       onChanged: onChanged,
+      obscureText: obscureText ?? false,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(
@@ -38,6 +43,7 @@ class TextInputPrimary extends StatelessWidget {
         fillColor: Colors.grey,
         focusColor: colors.primary,
         prefixIconColor: Colors.grey,
+        suffixIcon: suffixIcon,
       ),
     );
   }
