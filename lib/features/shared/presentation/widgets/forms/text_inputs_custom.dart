@@ -56,16 +56,21 @@ class TextInputSecondary extends StatelessWidget {
     this.focusNode,
     this.inputFormatters,
     this.hintText,
+    this.initialValue,
   });
 
   final String? hintText;
+  final String? initialValue;
   final Function(String value)? onChanged;
   final FocusNode? focusNode;
   final List<TextInputFormatter>? inputFormatters;
 
   @override
   Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+
     return TextFormField(
+      initialValue: initialValue,
       focusNode: focusNode,
       inputFormatters: inputFormatters,
       onChanged: onChanged,
@@ -75,11 +80,17 @@ class TextInputSecondary extends StatelessWidget {
           color: Colors.grey,
           fontSize: 16,
         ),
-        icon: const Icon(Icons.lock_outline),
-        iconColor: Colors.grey,
-        fillColor: Colors.grey,
-        focusColor: Theme.of(context).colorScheme.primary,
-        prefixIconColor: Colors.grey,
+        filled: true,
+        fillColor: colors.primary.withOpacity(0.1),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: BorderSide.none,
+        ),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 20,
+          vertical: 15,
+        ),
+        focusColor: colors.primary,
       ),
     );
   }
