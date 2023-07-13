@@ -68,7 +68,7 @@ class _NotAccountWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const AutoSizeText(
-          'Don\'t have an account? ',
+          '¿Tienes problemas? ',
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
@@ -77,12 +77,14 @@ class _NotAccountWidget extends StatelessWidget {
         GestureDetector(
           onTap: () {},
           child: AutoSizeText(
-            'Sign Up',
+            'Comunícate con nosotros',
             style: TextStyle(
-              fontSize: 16,
               fontWeight: FontWeight.bold,
               color: colors.primary,
             ),
+            maxFontSize: 16,
+            minFontSize: 12,
+            stepGranularity: 2,
           ),
         ),
       ],
@@ -100,7 +102,7 @@ class _LoginButtons extends StatelessWidget {
         ButtonLargeWidget(
           onPressed: () => context.push(Routes.product),
           child: const AutoSizeText(
-            'Login',
+            'Ingresar',
             maxFontSize: 18,
             minFontSize: 14,
             presetFontSizes: [18, 16, 14],
@@ -120,7 +122,7 @@ class _LoginButtons extends StatelessWidget {
               ),
               const SizedBox(width: 50),
               const AutoSizeText(
-                'Login with Google',
+                'Ingresa con Google',
                 maxFontSize: 18,
                 minFontSize: 14,
                 presetFontSizes: [18, 16, 14],
@@ -149,7 +151,7 @@ class _ForgotPasswordWidget extends StatelessWidget {
         GestureDetector(
           onTap: () {},
           child: AutoSizeText(
-            'Forgot Password?',
+            '¿Olvidaste tu contraseña?',
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
@@ -170,7 +172,7 @@ class _TitleLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const AutoSizeText(
-      'Login',
+      'Inventario GC',
       style: TextStyle(
         fontSize: 30,
         fontWeight: FontWeight.bold,
@@ -190,7 +192,7 @@ class _LoginForm extends StatelessWidget {
       children: [
         TextFormField(
           decoration: InputDecoration(
-            hintText: 'Email ID',
+            hintText: 'Correo',
             hintStyle: const TextStyle(
               color: Colors.grey,
               fontSize: 16,
@@ -205,7 +207,7 @@ class _LoginForm extends StatelessWidget {
         const SizedBox(height: 20),
         TextFormField(
           decoration: InputDecoration(
-            hintText: 'Password',
+            hintText: 'Contraseña',
             hintStyle: const TextStyle(
               color: Colors.grey,
               fontSize: 16,
