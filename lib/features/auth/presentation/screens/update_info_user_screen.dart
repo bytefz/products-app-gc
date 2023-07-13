@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:go_router/go_router.dart';
 
 import 'package:products_app/features/shared/presentation/presentation.dart';
+import 'package:products_app/config/config.dart';
 
 class UpdateInfoUserScreen extends StatelessWidget {
   const UpdateInfoUserScreen({super.key});
@@ -56,7 +58,9 @@ class _UpdateButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            context.push(Routes.confirmation);
+          },
           child: const Text('Actualizar Datos'),
         ),
       ],
