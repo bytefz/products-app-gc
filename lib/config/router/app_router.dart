@@ -16,7 +16,10 @@ final goRouter = GoRouter(
       path: Routes.updateInfoUser,
       builder: (context, state) => const UpdateInfoUserScreen(),
     ),
-    //TODO: Add Confirmation Screen
+    GoRoute(
+      path: Routes.confirmation,
+      builder: (context, state) => const ConfirmationView(),
+    ),
 
     ///* Product Routes
     GoRoute(
