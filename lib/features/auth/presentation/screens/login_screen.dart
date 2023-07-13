@@ -3,6 +3,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:products_app/config/config.dart';
+import 'package:products_app/features/shared/presentation/presentation.dart';
 import 'package:products_app/features/shared/shared.dart';
 import 'package:products_app/features/auth/presentation/presentation.dart';
 
@@ -100,7 +101,7 @@ class _LoginButtons extends StatelessWidget {
     return Column(
       children: [
         ButtonLargeWidget(
-          onPressed: () => context.push(Routes.product),
+          onPressed: () => context.push(Routes.updateInfoUser),
           child: const AutoSizeText(
             'Ingresar',
             maxFontSize: 18,
@@ -186,41 +187,19 @@ class _LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
-
     return Column(
       children: [
-        TextFormField(
-          decoration: InputDecoration(
-            hintText: 'Correo',
-            hintStyle: const TextStyle(
-              color: Colors.grey,
-              fontSize: 16,
-            ),
-            icon: const Icon(Icons.email_outlined),
-            iconColor: Colors.grey,
-            fillColor: Colors.grey,
-            focusColor: colors.primary,
-            prefixIconColor: Colors.grey,
-          ),
+        const TextInputPrimary(
+          hintText: 'Correo',
+          icon: Icon(Icons.email_outlined),
         ),
         const SizedBox(height: 20),
-        TextFormField(
-          decoration: InputDecoration(
-            hintText: 'Contraseña',
-            hintStyle: const TextStyle(
-              color: Colors.grey,
-              fontSize: 16,
-            ),
-            icon: const Icon(Icons.lock_sharp),
-            iconColor: Colors.grey,
-            fillColor: Colors.grey,
-            focusColor: colors.primary,
-            prefixIconColor: Colors.grey,
-            suffixIcon: GestureDetector(
-              onTap: () {},
-              child: const Icon(Icons.remove_red_eye_outlined),
-            ),
+        TextInputPrimary(
+          hintText: 'Contraseña',
+          icon: const Icon(Icons.lock_sharp),
+          suffixIcon: GestureDetector(
+            onTap: () {},
+            child: const Icon(Icons.remove_red_eye_outlined),
           ),
         ),
       ],
