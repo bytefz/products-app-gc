@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:products_app/config/config.dart';
+import 'package:products_app/features/shared/shared.dart'
+    show ErrorModel, LocalImagesDataSource, ErrorNotices;
 
 class ConfirmationView extends StatelessWidget {
   const ConfirmationView({super.key});
@@ -24,11 +27,69 @@ class _ConfirmationView extends StatelessWidget {
           children: [
             Spacer(),
             _ImageConfirmation(),
-            _ContentTextWidget(),
+            SizedBox(height: 30),
+            _Main(),
             Spacer(),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _Main extends StatelessWidget {
+  const _Main();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 30),
+      child: Column(
+        children: [
+          _ContentTextWidget(),
+          SizedBox(height: 30),
+          _ButtonForContact(),
+        ],
+      ),
+    );
+  }
+}
+
+class _ButtonForContact extends StatelessWidget {
+  const _ButtonForContact();
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text(
+          '¿Tienes problemas?',
+          style: textTheme.titleMedium?.copyWith(
+            color: Colors.grey,
+          ),
+        ),
+        const SizedBox(height: 10),
+        FilledButton.tonal(
+          onPressed: () async {
+            try {
+              await LaunchUrlHelper.redirectToWhatsapp();
+            } on Exception {
+              const message = 'No se pudo abrir WhatsApp';
+              final error = ErrorModel(message: message);
+              ErrorNotices.showErrorBanner(context, error);
+            }
+          },
+          child: Text(
+            'Contactar a soporte',
+            style: textTheme.bodyMedium?.copyWith(
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -51,7 +112,9 @@ class _ContentTextWidgetState extends State<_ContentTextWidget> {
       if (streamController.isClosed) return;
       streamController.add(points);
 
-      if (points.length < 3) {
+      final lessThanThreePoints = points.length < 3;
+
+      if (lessThanThreePoints) {
         points += '.';
         streamController.add(points);
         _changeLengthPoints();
@@ -86,25 +149,22 @@ class _ContentTextWidgetState extends State<_ContentTextWidget> {
       initialData: '.',
       stream: streamController.stream,
       builder: (context, snapshot) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            children: [
-              Text(
-                'Hola $name,',
-                textAlign: TextAlign.center,
-                style: textTheme.titleMedium,
+        return Column(
+          children: [
+            Text(
+              'Hola $name,',
+              textAlign: TextAlign.center,
+              style: textTheme.titleMedium,
+            ),
+            const SizedBox(height: 10),
+            Text(
+              'Espera un momento, estamos confirmando tu cuenta${snapshot.data}',
+              textAlign: TextAlign.center,
+              style: textTheme.bodyLarge?.copyWith(
+                fontSize: 24,
               ),
-              const SizedBox(height: 10),
-              Text(
-                'Espera un momento, estamos confirmando tu cuenta${snapshot.data}',
-                textAlign: TextAlign.center,
-                style: textTheme.bodyLarge?.copyWith(
-                  fontSize: 24,
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         );
       },
     );
@@ -119,10 +179,22 @@ class _ImageConfirmation extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Image.asset(
-      'assets/imgs/desk-lamp.png',
+      LocalImagesDataSource.deskLampImagePath,
       width: size.width * 0.7,
       height: size.height * 0.4,
       filterQuality: FilterQuality.high,
+      frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+        if (wasSynchronouslyLoaded) {
+          return child;
+        }
+
+        return AnimatedOpacity(
+          opacity: frame == null ? 0 : 1,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeOut,
+          child: child,
+        );
+      },
     );
   }
 }
