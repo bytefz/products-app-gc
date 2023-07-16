@@ -1,1 +1,1 @@
-export 'errors/errors.dart';
+export 'notices/notices.dart';
