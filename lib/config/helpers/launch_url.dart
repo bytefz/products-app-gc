@@ -8,14 +8,18 @@ class LaunchUrlHelper {
     final iosWhatsappUrl = Environment.iosWhatsappUrl;
     final androidUrlWhatsapp = Environment.androidWhatsappUrl;
 
-    if (Platform.isAndroid) {
-      await launchUrl(Uri.parse(androidUrlWhatsapp));
-      return;
-    }
+    try {
+      if (Platform.isAndroid) {
+        await launchUrl(Uri.parse(androidUrlWhatsapp));
+        return;
+      }
 
-    if (Platform.isIOS) {
-      launchUrl(Uri.parse(iosWhatsappUrl));
-      return;
+      if (Platform.isIOS) {
+        await launchUrl(Uri.parse(iosWhatsappUrl));
+        return;
+      }
+    } on Exception catch (e) {
+      throw Exception(e);
     }
   }
 }
