@@ -31,5 +31,25 @@ class AppTheme {
             fontWeight: FontWeight.normal,
           ),
         ),
+
+        // Filled Buttons
+        filledButtonTheme: FilledButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(
+              const Color.fromRGBO(65, 66, 227, 1),
+            ),
+            padding: MaterialStateProperty.all(
+              const EdgeInsets.symmetric(
+                horizontal: 20,
+                vertical: 10,
+              ),
+            ),
+            shape: MaterialStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          ),
+        ),
       );
 }
