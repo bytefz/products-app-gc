@@ -3,7 +3,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:go_router/go_router.dart';
 
 import 'package:products_app/config/config.dart';
-import 'package:products_app/features/shared/presentation/presentation.dart';
 import 'package:products_app/features/shared/shared.dart';
 import 'package:products_app/features/auth/presentation/presentation.dart';
 
@@ -15,19 +14,21 @@ class LoginScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
-      body: SingleChildScrollView(
-        child: SizedBox(
-          height: size.height,
-          child: const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
-              children: [
-                Spacer(),
-                _IconLogin(),
-                SizedBox(height: 20),
-                _LoginView(),
-                Spacer(),
-              ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: SizedBox(
+            height: size.height,
+            child: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                children: [
+                  Spacer(),
+                  _IconLogin(),
+                  SizedBox(height: 20),
+                  _LoginView(),
+                  Spacer(),
+                ],
+              ),
             ),
           ),
         ),
@@ -121,14 +122,21 @@ class _LoginButtons extends StatelessWidget {
                 LocalImagesDataSource.googleLogoPath,
                 height: 30,
               ),
-              const SizedBox(width: 50),
-              const AutoSizeText(
-                'Ingresa con Google',
-                maxFontSize: 18,
-                minFontSize: 14,
-                presetFontSizes: [18, 16, 14],
-                style: TextStyle(
-                  color: Colors.black,
+              const Expanded(
+                flex: 1,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    AutoSizeText(
+                      'Ingresa con Google',
+                      maxFontSize: 18,
+                      minFontSize: 14,
+                      presetFontSizes: [18, 16, 14],
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
