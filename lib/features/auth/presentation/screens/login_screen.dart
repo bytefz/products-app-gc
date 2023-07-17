@@ -102,7 +102,7 @@ class _LoginButtons extends StatelessWidget {
     return Column(
       children: [
         ButtonLargeWidget(
-          onPressed: () => context.push(Routes.updateInfoUser),
+          onPressed: () => context.push(Routes.inventary),
           child: const AutoSizeText(
             'Ingresar',
             maxFontSize: 18,

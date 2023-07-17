@@ -1,1 +1,1 @@
-export 'products_screen.dart';
+export 'inventary_screen.dart';

@@ -5,5 +5,5 @@ class Routes {
   static const String confirmation = '/auth/confirmation';
 
   //? Product Routes
-  static const String product = '/';
+  static const String inventary = '/';
 }

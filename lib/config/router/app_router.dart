@@ -23,8 +23,8 @@ final goRouter = GoRouter(
 
     ///* Product Routes
     GoRoute(
-      path: Routes.product,
-      builder: (context, state) => const ProductScreen(),
+      path: Routes.inventary,
+      builder: (context, state) => const InventaryScreen(),
     ),
   ],
 );
