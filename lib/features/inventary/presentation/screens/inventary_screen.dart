@@ -40,9 +40,45 @@ class _InventaryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text('Inventary Screen'),
+    final textTheme = Theme.of(context).textTheme;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10),
+      child: ListView.builder(
+        itemCount: 10,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 5),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Inventario: 2021-10-10',
+                  style: textTheme.bodyLarge?.copyWith(
+                    color: Colors.indigo,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Card(
+                  elevation: 1,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: ListTile(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    leading: GridTile(child: const Icon(Icons.inventory)),
+                    title: Text('Item $index'),
+                    subtitle: Text('Item $index description'),
+                    trailing: const Icon(Icons.arrow_forward_ios_rounded),
+                    onTap: () {},
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
