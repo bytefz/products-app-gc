@@ -42,6 +42,8 @@ class _InventaryView extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
 
+    const double cardHeight = 105;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: ListView.builder(
@@ -64,15 +66,88 @@ class _InventaryView extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  child: ListTile(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                  child: SizedBox(
+                    height: cardHeight,
+                    width: double.infinity,
+                    child: Row(
+                      children: [
+                        Container(
+                          width: cardHeight,
+                          decoration: const BoxDecoration(
+                            border: Border(
+                              left: BorderSide(
+                                color: Colors.grey,
+                                width: 1,
+                              ),
+                            ),
+                          ),
+                          child: GridView.builder(
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 1,
+                              mainAxisSpacing: 1,
+                            ),
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: 4,
+                            itemBuilder: (context, index) => Padding(
+                              padding: EdgeInsets.zero,
+                              child: Container(
+                                color: Colors.orange,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Item 1',
+                                  style: textTheme.titleMedium?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(height: 5),
+                                Text(
+                                  'Item 1 description',
+                                  style: textTheme.bodyMedium?.copyWith(
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                const SizedBox(height: 5),
+                                Text(
+                                  'Cantidad: 10',
+                                  style: textTheme.bodyMedium?.copyWith(
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: GridView.builder(
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 1,
+                              mainAxisSpacing: 3,
+                            ),
+                            // physics: const NeverScrollableScrollPhysics(),
+                            itemCount: 3,
+                            itemBuilder: (context, index) => Padding(
+                              padding: EdgeInsets.zero,
+                              child: Container(
+                                width: 30,
+                                color: Colors.orange,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    leading: GridTile(child: const Icon(Icons.inventory)),
-                    title: Text('Item $index'),
-                    subtitle: Text('Item $index description'),
-                    trailing: const Icon(Icons.arrow_forward_ios_rounded),
-                    onTap: () {},
                   ),
                 ),
               ],
@@ -80,6 +155,52 @@ class _InventaryView extends StatelessWidget {
           );
         },
       ),
+    );
+  }
+}
+
+class _CardItem extends StatelessWidget {
+  const _CardItem({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20),
+      ),
+      visualDensity: const VisualDensity(vertical: 4),
+      leading: Container(
+        width: 100,
+        decoration: const BoxDecoration(
+          border: Border(
+            right: BorderSide(
+              color: Colors.white,
+              width: 1,
+            ),
+          ),
+        ),
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 1,
+            mainAxisSpacing: 1,
+          ),
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: 4,
+          itemBuilder: (context, index) => Padding(
+            padding: EdgeInsets.zero,
+            child: Container(
+              color: Colors.orange,
+            ),
+          ),
+        ),
+      ),
+      minLeadingWidth: 100,
+      title: Text('Item 2'),
+      subtitle: Text('Item 2 description'),
+      onTap: () {},
     );
   }
 }
