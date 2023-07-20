@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:products_app/features/inventary/presentation/widgets/card_inventary_widget.dart';
 
 class InventaryScreen extends StatelessWidget {
   const InventaryScreen({super.key});
@@ -40,167 +41,19 @@ class _InventaryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-
-    const double cardHeight = 105;
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: ListView.builder(
         itemCount: 10,
         itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 5),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Inventario: 2021-10-10',
-                  style: textTheme.bodyLarge?.copyWith(
-                    color: Colors.indigo,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Card(
-                  elevation: 1,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: SizedBox(
-                    height: cardHeight,
-                    width: double.infinity,
-                    child: Row(
-                      children: [
-                        Container(
-                          width: cardHeight,
-                          decoration: const BoxDecoration(
-                            border: Border(
-                              left: BorderSide(
-                                color: Colors.grey,
-                                width: 1,
-                              ),
-                            ),
-                          ),
-                          child: GridView.builder(
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 1,
-                              mainAxisSpacing: 1,
-                            ),
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemCount: 4,
-                            itemBuilder: (context, index) => Padding(
-                              padding: EdgeInsets.zero,
-                              child: Container(
-                                color: Colors.orange,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(10),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Item 1',
-                                  style: textTheme.titleMedium?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                const SizedBox(height: 5),
-                                Text(
-                                  'Item 1 description',
-                                  style: textTheme.bodyMedium?.copyWith(
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                const SizedBox(height: 5),
-                                Text(
-                                  'Cantidad: 10',
-                                  style: textTheme.bodyMedium?.copyWith(
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: GridView.builder(
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 1,
-                              mainAxisSpacing: 3,
-                            ),
-                            // physics: const NeverScrollableScrollPhysics(),
-                            itemCount: 3,
-                            itemBuilder: (context, index) => Padding(
-                              padding: EdgeInsets.zero,
-                              child: Container(
-                                width: 30,
-                                color: Colors.orange,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          return InventaryItem(
+            dateInventary: '2021-10-10',
+            totalProductsInventary: 4,
+            urlProductBrands: [],
+            urlProductImages: [],
           );
         },
       ),
-    );
-  }
-}
-
-class _CardItem extends StatelessWidget {
-  const _CardItem({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
-      visualDensity: const VisualDensity(vertical: 4),
-      leading: Container(
-        width: 100,
-        decoration: const BoxDecoration(
-          border: Border(
-            right: BorderSide(
-              color: Colors.white,
-              width: 1,
-            ),
-          ),
-        ),
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 1,
-            mainAxisSpacing: 1,
-          ),
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: 4,
-          itemBuilder: (context, index) => Padding(
-            padding: EdgeInsets.zero,
-            child: Container(
-              color: Colors.orange,
-            ),
-          ),
-        ),
-      ),
-      minLeadingWidth: 100,
-      title: Text('Item 2'),
-      subtitle: Text('Item 2 description'),
-      onTap: () {},
     );
   }
 }
